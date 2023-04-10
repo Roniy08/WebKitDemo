@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link rel="stylesheet" type="text/css" href="Login.css" />
+    </head>
+<body>
+
+        <div class="container">
+                <div class="inputContainer">
+                  <label id="status">status</label>
+                  <div class="sumbitButtons">
+                      <button type="submit" class="style" onclick="sendDetails()"><i>Open dialog sheet</i></button>
+                  </div>
+                </div>              
+              </div>
+
+    <script>
+        function fillDetails(jsonData) {
+            var userData = JSON.parse(jsonData);
+            document.getElementById("status").innerHTML = userData["status"];
+        }
+
+        function sendDetails() {
+                   var statusCheck = document.getElementById("status").value;
+                   var value = {"status":statusCheck}
+
+                   try {
+                       webkit.messageHandlers.sumbitToiOS.postMessage(value);
+
+               } catch(err) {
+                       console.log('error');
+                    }
+               }
+                  
+    </script>
+
+</body>
+</html> 
